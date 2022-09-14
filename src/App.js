@@ -5,7 +5,7 @@ import Home from "./pages/Home"
 import MovieDetails from "./pages/MovieDetails"
 
 const loadData = async () => await JSON.parse(JSON.stringify(jsonData))
-// const API_KEY = process.env.REACT_APP_API_KEY
+const API_KEY = process.env.REACT_APP_API_KEY
 function App() {
 	const [loading, setLoading] = useState(null)
 	const [movies, setMovies] = useState(null)
@@ -18,13 +18,13 @@ function App() {
 
 	const getTopMovies = async () => {
 		setLoading(true)
-		// const response = await fetch(
-		// 	`https://imdb-api.com/en/API/Top250Movies/${API_KEY}`
-		// )
+		const response = await fetch(
+			`https://imdb-api.com/en/API/Top250Movies/${API_KEY}`
+		)
 
-		// const data = await response.json()
+		const data = await response.json()
 
-		const data = await loadData()
+		// const data = await loadData()
 		setMovies(data.items)
 		setLoading(false)
 	}
