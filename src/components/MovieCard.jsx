@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 const MovieCard = ({ movie, setUpdatedId }) => {
-	const { title, image, imDbRating, year, id } = movie
+	const { fullTitle, image, imDbRating, id } = movie
 
 	const clickHandler = () => {
 		setUpdatedId(id)
@@ -15,16 +15,15 @@ const MovieCard = ({ movie, setUpdatedId }) => {
 						className='card h-100 text-light bg-dark shadow-lg'
 						onClick={clickHandler}
 					>
-						<img src={image} className='card-img-top' alt={title} />
+						<img
+							src={image}
+							className='card-img-top'
+							alt={fullTitle}
+						/>
 						<div className='card-body'>
-							<h5 className='card-title'>
-								{title}
-								{year ? " (" + year + ")" : ""}
-							</h5>
+							<h5 className='card-title'>{fullTitle}</h5>
 							<p className='card-text'>
-								{imDbRating
-									? `IMDB Rating : ${imDbRating} / 10`
-									: ""}{" "}
+								{imDbRating ? `IMDB : ${imDbRating} / 10` : ""}
 							</p>
 						</div>
 					</div>
