@@ -17,10 +17,14 @@ const MovieCard = ({ movie, setUpdatedId }) => {
 					>
 						<img src={image} className='card-img-top' alt={title} />
 						<div className='card-body'>
-							<h5 className='card-title'>{title}</h5>
+							<h5 className='card-title'>
+								{title}
+								{year ? " (" + year + ")" : ""}
+							</h5>
 							<p className='card-text'>
-								{imDbRating ? imDbRating : ""}{" "}
-								{year ? year : ""}
+								{imDbRating
+									? `IMDB Rating : ${imDbRating} / 10`
+									: ""}{" "}
 							</p>
 						</div>
 					</div>

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
-import jsonData from "./test.json"
+import jsonData from "./jsonData"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import Home from "./pages/Home"
 import MovieDetails from "./pages/MovieDetails"
 
 const loadData = async () => await JSON.parse(JSON.stringify(jsonData))
-
+// const API_KEY = process.env.REACT_APP_API_KEY
 function App() {
 	const [loading, setLoading] = useState(null)
 	const [movies, setMovies] = useState(null)
