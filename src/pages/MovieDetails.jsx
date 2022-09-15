@@ -48,6 +48,7 @@ function MovieDetails() {
 	}
 	useEffect(() => {
 		getMovieData()
+		window.scrollTo(0, 0)
 		// eslint-disable-next-line
 	}, [updatedId])
 
