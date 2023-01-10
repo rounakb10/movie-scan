@@ -19,6 +19,7 @@ function App() {
 	const [movies, setMovies] = useState(null)
 	const [series, setSeries] = useState(null)
 	const [blank, setBlank] = useState(null)
+
 	// const params = useParams()
 	// const [updatedId, setUpdatedId] = useState(params.id)
 
@@ -64,7 +65,6 @@ function App() {
 							setMovies={setBlank}
 							loading={loading}
 							setLoading={setLoading}
-							errorMessage={""}
 						/>
 					}
 				/>

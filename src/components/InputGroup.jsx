@@ -3,7 +3,7 @@ import "./input_group.css"
 const API_KEY = process.env.REACT_APP_API_KEY
 const API_URL = `https://imdb-api.com/en/API`
 
-function InputGroup({ setMovies, setLoading }) {
+function InputGroup({ setMovies, setLoading, errorMessage, setErrorMessage }) {
 	const [searchTerm, setSearchTerm] = useState("")
 	const [searchType, setSearchType] = useState("")
 
@@ -15,6 +15,7 @@ function InputGroup({ setMovies, setLoading }) {
 			)
 			const data = await response.json()
 			if (data.results) setMovies(data.results)
+			setErrorMessage(data.errorMessage)
 		}
 		setLoading(false)
 	}

@@ -9,10 +9,10 @@ import Cards from "../components/Cards"
 // const loadData = async () => await JSON.parse(JSON.stringify(jsonData))
 // const loadTrailer = async () => await JSON.parse(JSON.stringify(trailerJsonData))
 
-const API_KEY = process.env.REACT_APP_API_KEY
+import detailData from "../data/detailData"
+const loadDetailData = async () => await JSON.parse(JSON.stringify(detailData))
 
-// import detailData from "../data/detailData"
-// const loadDetailData = async () => await JSON.parse(JSON.stringify(detailData))
+const API_KEY = process.env.REACT_APP_API_KEY
 
 function MovieDetails() {
 	const [movieData, setMovieData] = useState(null)
@@ -34,12 +34,12 @@ function MovieDetails() {
 	}
 
 	// TEST
-	// const getDetailData = async () => {
-	// 	setLoading(true)
-	// 	const data = await loadDetailData()
-	// 	setMovieData(data.items)
-	// 	setLoading(false)
-	// }
+	const getDetailData = async () => {
+		setLoading(true)
+		const data = await loadDetailData()
+		setMovieData(data.items)
+		setLoading(false)
+	}
 
 	const getMovieData = async () => {
 		setLoading(true)
@@ -101,7 +101,7 @@ function MovieDetails() {
 			{movieData ? (
 				movieData.errorMessage === "" ? (
 					<div className='mb-8'>
-						<div className='grid my-4 md:mx-6 mx-4 md:grid-cols-[40%_60%] grid-cols-1 justify-items-center content-center mb-32'>
+						<div className='grid mt-4 mb-32 md:mx-6 mx-4 md:grid-cols-[40%_60%] grid-cols-1 md:gap-0 gap-6 justify-items-center content-center'>
 							<div className='mb-2'>
 								<img
 									className='rounded-xl md:w-3/4 w-[90%] mx-auto'

@@ -4,17 +4,23 @@ import Cards from "../components/Cards"
 // import { useState } from "react"
 import PropagateLoader from "react-spinners/PropagateLoader"
 import Navbar from "../components/Navbar"
+import { useState } from "react"
 
-function Home({ movies, setMovies, loading, setLoading, errorMessage }) {
+function Home({ movies, setMovies, loading, setLoading }) {
 	// const [movies, setMovies] = useState()
 	const setUpdatedId = () => {}
 	// console.log(errorMessage)
+	const [errorMessage, setErrorMessage] = useState("")
 	return (
 		<div className='flex flex-col h-screen items-center justify-between'>
 			<Navbar />
 
 			<main className='self-stretch'>
-				<InputGroup setMovies={setMovies} setLoading={setLoading} />
+				<InputGroup
+					setMovies={setMovies}
+					setLoading={setLoading}
+					setErrorMessage={setErrorMessage}
+				/>
 				{loading && (
 					<div className='text-center mt-4'>
 						<PropagateLoader
