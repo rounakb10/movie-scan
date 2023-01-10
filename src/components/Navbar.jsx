@@ -1,46 +1,18 @@
+import "./navbar.css"
 function Navbar() {
 	return (
-		<nav className='navbar sticky-top navbar-expand bg-dark navbar-dark'>
-			<div className='container-fluid'>
-				<a className='navbar-brand' href='/'>
-					MovieScan
+		<nav className='flex self-stretch gap-6 justify-between items-center mb-4 px-6'>
+			<a className='nav-item nav-brand py-4' href='/'>
+				MovieDB
+			</a>
+			<div className='flex md:gap-6 gap-3'>
+				<a className='nav-item' href='/top-60-movies'>
+					Top 60 Movies
 				</a>
 
-				{/* <div
-					className='collapse navbar-collapse'
-					id='navbarNavAltMarkup'
-				>
-					<div className='navbar-nav'>
-						<a className='nav-link' href='#movies'>
-							Movies
-						</a>
-						<a className='nav-link' href='#series'>
-							Series
-						</a>
-					</div>
-				</div> */}
-				{/* <form className='d-flex' role='search'>
-					<input
-						className='form-control me-2'
-						type='search'
-						placeholder='Search'
-						aria-label='Search'
-					/>
-					<button className='btn btn-outline-light' type='submit'>
-						Search
-					</button>
-				</form> */}
-				{/* <button
-					className='navbar-toggler'
-					type='button'
-					data-bs-toggle='collapse'
-					data-bs-target='#navbarNavAltMarkup'
-					aria-controls='navbarNavAltMarkup'
-					aria-expanded='false'
-					aria-label='Toggle navigation'
-				>
-					<span className='navbar-toggler-icon'></span>
-				</button> */}
+				<a className='nav-item' href='/top-60-tvs'>
+					Top 60 TV
+				</a>
 			</div>
 		</nav>
 	)

@@ -1,31 +1,53 @@
-import Navbar from "../components/Navbar"
 import InputGroup from "../components/InputGroup"
-import MovieCard from "../components/MovieCard"
-import { ClipLoader } from "react-spinners"
+import "./home.css"
+import Cards from "../components/Cards"
+// import { useState } from "react"
+import PropagateLoader from "react-spinners/PropagateLoader"
+import Navbar from "../components/Navbar"
 
 function Home({ movies, setMovies, loading, setLoading }) {
+	// const [movies, setMovies] = useState()
 	const setUpdatedId = () => {}
+	// console.log(errorMessage)
 	return (
-		<div>
+		<div className='flex flex-col h-screen items-center justify-between'>
 			<Navbar />
 
-			<InputGroup setMovies={setMovies} setLoading={setLoading} />
-			<div className='text-center'>
-				<br />
-				<ClipLoader loading={loading} size={100} color='white' />
-			</div>
-			<div className='overflow-hidden p-2 bg-dark'>
-				<div className='row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 row-cols-xl-6  g-4'>
-					{movies &&
-						movies.map((item) => (
-							<MovieCard
-								movie={item}
-								key={item.id}
+			<main className='self-stretch'>
+				<InputGroup setMovies={setMovies} setLoading={setLoading} />
+				{loading && (
+					<div className='text-center mt-4'>
+						<PropagateLoader
+							loading={loading}
+							size={14}
+							color='var(--text)'
+						/>
+					</div>
+				)}
+				<div className='overflow-hidden p-2'>
+					{movies ? (
+						movies.errorMessage === "" ? (
+							<Cards
+								movies={movies.items || movies}
 								setUpdatedId={setUpdatedId}
 							/>
-						))}
+						) : (
+							<div className='flex flex-col h-[85vh] items-center justify-center'>
+								<p className='md:text-2xl sm:text-xl'>
+									API limit exceeded, try again later
+								</p>
+							</div>
+						)
+					) : (
+						<></>
+					)}
 				</div>
-			</div>
+			</main>
+			<footer className='flex self-stretch justify-center py-1'>
+				<p className='footer-text'>
+					Data provided by <a href='https://imdb-api.com'>IMDB-API</a>
+				</p>
+			</footer>
 		</div>
 	)
 }

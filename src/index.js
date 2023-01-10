@@ -9,3 +9,14 @@ root.render(
 		<App />
 	</React.StrictMode>
 )
+
+/*
+reduce css with tailwind
+search box
+implement search independently
+
+pagination
+colors
+
+
+*/

@@ -1,28 +1,55 @@
-/* body {
-	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-		"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-		"Helvetica Neue", sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* https://colorhunt.co/palette/1a120b3c2a21d5cea3e5e5cb */
+/* https://coolors.co/palette/01161e-124559-598392-aec3b0-eff6e0 */
+:root {
+	/* --bg: #1a120b; */
+	/* --text: #e5e5cb; */
+	--bg: #000000;
+	--surface: #121212;
+	--card: #121212;
+
+	--primary: #e50914;
+	--text: #ced4da;
+	--grey: #868e96;
+
+	--lightgrey: #adb5bd;
+	--midnight: #01161e;
+	--darkbluegrey: #124559;
+	--bluegrey: #598392;
+	--spring: #aec3b0;
+	--beige: #eff6e0;
 }
 
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-		monospace;
-} */
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
 
 .crop {
 	max-width: 80%;
 }
 
 body {
-	background-color: #212529;
+	/* background-color: #141619; */
+	background-color: var(--bg);
+	background-repeat: no-repeat;
+	color: var(--text);
+	font-family: "Inter", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 .link {
-	color: #fff;
+	color: var(--text);
 	text-decoration: none;
 }
 .link:hover {
-	color: #fff;
+	color: var(--text);
+}
+
+svg {
+	display: inline-block;
 }
