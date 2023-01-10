@@ -5,7 +5,7 @@ import Cards from "../components/Cards"
 import PropagateLoader from "react-spinners/PropagateLoader"
 import Navbar from "../components/Navbar"
 
-function Home({ movies, setMovies, loading, setLoading }) {
+function Home({ movies, setMovies, loading, setLoading, errorMessage }) {
 	// const [movies, setMovies] = useState()
 	const setUpdatedId = () => {}
 	// console.log(errorMessage)
@@ -26,7 +26,7 @@ function Home({ movies, setMovies, loading, setLoading }) {
 				)}
 				<div className='overflow-hidden p-2'>
 					{movies ? (
-						movies.errorMessage === "" ? (
+						movies.errorMessage === "" || errorMessage === "" ? (
 							<Cards
 								movies={movies.items || movies}
 								setUpdatedId={setUpdatedId}

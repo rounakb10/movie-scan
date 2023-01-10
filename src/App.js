@@ -64,6 +64,7 @@ function App() {
 							setMovies={setBlank}
 							loading={loading}
 							setLoading={setLoading}
+							errorMessage={""}
 						/>
 					}
 				/>
