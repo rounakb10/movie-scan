@@ -1,23 +1,58 @@
-import InputGroup from "../components/InputGroup"
 import "./home.css"
+import InputGroup from "../components/InputGroup"
 import Cards from "../components/Cards"
-// import { useState } from "react"
 import PropagateLoader from "react-spinners/PropagateLoader"
 import Navbar from "../components/Navbar"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-function Home({ movies, setMovies, loading, setLoading }) {
-	// const [movies, setMovies] = useState()
-	const setUpdatedId = () => {}
-	// console.log(errorMessage)
+import movieJsonData from "../data/movieJsonData"
+import seriesJsonData from "../data/seriesJsonData"
+
+const loadMovieData = async () =>
+	await JSON.parse(JSON.stringify(movieJsonData))
+const loadSeriesData = async () =>
+	await JSON.parse(JSON.stringify(seriesJsonData))
+
+function Home({ name = "" }) {
+	const [data, setData] = useState(null)
+	const [loading, setLoading] = useState(null)
 	const [errorMessage, setErrorMessage] = useState("")
+
+	const setUpdatedId = () => {}
+
+	useEffect(() => {
+		if (name === "movie") getTopMovies()
+		else if (name === "tv") getTopSeries()
+		else {
+			setLoading(null)
+			setData(null)
+			setErrorMessage("")
+		}
+	}, [name])
+
+	const getTopMovies = async () => {
+		setLoading(true)
+		const data = await loadMovieData()
+		setErrorMessage(data.errorMessage)
+		setData(data.items)
+		setLoading(false)
+	}
+
+	const getTopSeries = async () => {
+		setLoading(true)
+		const data = await loadSeriesData()
+		setErrorMessage(data.errorMessage)
+		setData(data.items)
+		setLoading(false)
+	}
+
 	return (
 		<div className='flex flex-col h-screen items-center justify-between'>
 			<Navbar />
 
 			<main className='self-stretch'>
 				<InputGroup
-					setMovies={setMovies}
+					setMovies={setData}
 					setLoading={setLoading}
 					setErrorMessage={setErrorMessage}
 				/>
@@ -31,12 +66,9 @@ function Home({ movies, setMovies, loading, setLoading }) {
 					</div>
 				)}
 				<div className='overflow-hidden p-2'>
-					{movies ? (
-						movies.errorMessage === "" || errorMessage === "" ? (
-							<Cards
-								movies={movies.items || movies}
-								setUpdatedId={setUpdatedId}
-							/>
+					{data ? (
+						data.errorMessage === "" || errorMessage === "" ? (
+							<Cards movies={data} setUpdatedId={setUpdatedId} />
 						) : (
 							<div className='flex flex-col h-[85vh] items-center justify-center'>
 								<p className='md:text-2xl sm:text-xl'>

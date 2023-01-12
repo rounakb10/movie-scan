@@ -1,12 +1,12 @@
 .card {
 	/* box-shadow: 0 0 24px rgba(0, 0, 0, 0.236); */
-	box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+	/* box-shadow: 0 0 8px rgba(255, 255, 255, 0.1); */
 	/* background-color: #3c2a218a; */
 	background-color: var(--card);
 }
 
 .card:hover {
-	box-shadow: 0 0 18px rgba(255, 255, 255, 0.25);
+	box-shadow: 0 0 22px rgba(255, 255, 255, 0.27);
 	/* rgba(130, 130, 130, 0.3) */
 	/* background-color: #3c2a21b5; */
 	/* background-color: var(--secondary); */
