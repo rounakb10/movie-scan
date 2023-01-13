@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 import "./movie_card.css"
 import placeholder from "../assets/placeholder.svg"
-const MovieCard = ({ movie, setUpdatedId }) => {
-	const { title, image, imDbRating, id } = movie
+const MovieCard = ({ dataItem, setUpdatedId }) => {
+	const { title, image, imDbRating, id } = dataItem
 
 	const clickHandler = () => {
 		setUpdatedId(id)
