@@ -1,9 +1,5 @@
-import { useContext } from "react"
-import DataContext from "../context/DataContext"
 import MovieCard from "./MovieCard"
-function Cards({ setUpdatedId }) {
-	const { data } = useContext(DataContext)
-
+function Cards({ data, setUpdatedId }) {
 	return (
 		<div className='grid lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-3 grid-cols-2 lg:gap-8 gap-6 my-4 mx-3'>
 			{data &&

@@ -4,8 +4,8 @@ import PropagateLoader from "react-spinners/PropagateLoader"
 import "./movie_details.css"
 import Cards from "../components/Cards"
 
-import detailData from "../data/detailData"
-const loadDetailData = async () => await JSON.parse(JSON.stringify(detailData))
+// import detailData from "../data/detailData"
+// const loadDetailData = async () => await JSON.parse(JSON.stringify(detailData))
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
@@ -28,12 +28,12 @@ function MovieDetails() {
 	}
 
 	// TEST
-	const getDetailData = async () => {
-		setLoading(true)
-		const data = await loadDetailData()
-		setMovieData(data.items)
-		setLoading(false)
-	}
+	// const getDetailData = async () => {
+	// 	setLoading(true)
+	// 	const data = await loadDetailData()
+	// 	setMovieData(data.items)
+	// 	setLoading(false)
+	// }
 
 	const getMovieData = async () => {
 		setLoading(true)
@@ -56,7 +56,7 @@ function MovieDetails() {
 
 	let navigate = useNavigate()
 	const handleClose = () => {
-		navigate(-1)
+		navigate("/", { replace: true })
 	}
 
 	const handleClick = () => {
@@ -178,7 +178,7 @@ function MovieDetails() {
 							</h3>
 						</div>
 						<Cards
-							movies={movieData.similars}
+							data={movieData.similars}
 							setUpdatedId={setUpdatedId}
 						/>
 					</div>

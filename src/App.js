@@ -8,13 +8,8 @@ function App() {
 		<DataProvider>
 			<BrowserRouter>
 				<Routes>
-					<Route path='/top-60-tvs' element={<Home name='tv' />} />
 					<Route path='/:id' element={<MovieDetails />} />
 					<Route path='/' element={<Home />} />
-					<Route
-						path='/top-60-movies'
-						element={<Home name='movie' />}
-					/>
 				</Routes>
 			</BrowserRouter>
 		</DataProvider>

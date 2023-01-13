@@ -3,26 +3,13 @@ import InputGroup from "../components/InputGroup"
 import Cards from "../components/Cards"
 import PropagateLoader from "react-spinners/PropagateLoader"
 import Navbar from "../components/Navbar"
-import { useState, useEffect, useContext } from "react"
+import { useContext } from "react"
 import DataContext from "../context/DataContext"
 
-function Home({ name = "" }) {
-	const {
-		data,
-		loading,
-		errorMessage,
-		getTopMovies,
-		getTopSeries,
-		getNothing,
-	} = useContext(DataContext)
+function Home() {
+	const { data, loading, errorMessage } = useContext(DataContext)
 
 	const setUpdatedId = () => {}
-
-	useEffect(() => {
-		if (name === "movie") getTopMovies()
-		else if (name === "tv") getTopSeries()
-		else getNothing()
-	}, [name])
 
 	return (
 		<div className='flex flex-col h-screen items-center justify-between'>
@@ -42,7 +29,7 @@ function Home({ name = "" }) {
 				<div className='overflow-hidden p-2'>
 					{data ? (
 						data.errorMessage === "" || errorMessage === "" ? (
-							<Cards setUpdatedId={setUpdatedId} />
+							<Cards data={data} setUpdatedId={setUpdatedId} />
 						) : (
 							<div className='flex flex-col h-[85vh] items-center justify-center'>
 								<p className='md:text-2xl sm:text-xl'>
@@ -63,4 +50,5 @@ function Home({ name = "" }) {
 		</div>
 	)
 }
+
 export default Home
