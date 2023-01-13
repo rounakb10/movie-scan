@@ -1,26 +1,22 @@
-import InputGroup from "../components/InputGroup"
 import "./home.css"
+import InputGroup from "../components/InputGroup"
 import Cards from "../components/Cards"
-// import { useState } from "react"
 import PropagateLoader from "react-spinners/PropagateLoader"
 import Navbar from "../components/Navbar"
-import { useState } from "react"
+import { useContext } from "react"
+import DataContext from "../context/DataContext"
 
-function Home({ movies, setMovies, loading, setLoading }) {
-	// const [movies, setMovies] = useState()
+function Home() {
+	const { data, loading, errorMessage } = useContext(DataContext)
+
 	const setUpdatedId = () => {}
-	// console.log(errorMessage)
-	const [errorMessage, setErrorMessage] = useState("")
+
 	return (
 		<div className='flex flex-col h-screen items-center justify-between'>
 			<Navbar />
 
 			<main className='self-stretch'>
-				<InputGroup
-					setMovies={setMovies}
-					setLoading={setLoading}
-					setErrorMessage={setErrorMessage}
-				/>
+				<InputGroup />
 				{loading && (
 					<div className='text-center mt-4'>
 						<PropagateLoader
@@ -31,12 +27,9 @@ function Home({ movies, setMovies, loading, setLoading }) {
 					</div>
 				)}
 				<div className='overflow-hidden p-2'>
-					{movies ? (
-						movies.errorMessage === "" || errorMessage === "" ? (
-							<Cards
-								movies={movies.items || movies}
-								setUpdatedId={setUpdatedId}
-							/>
+					{data ? (
+						data.errorMessage === "" || errorMessage === "" ? (
+							<Cards data={data} setUpdatedId={setUpdatedId} />
 						) : (
 							<div className='flex flex-col h-[85vh] items-center justify-center'>
 								<p className='md:text-2xl sm:text-xl'>
@@ -57,4 +50,5 @@ function Home({ movies, setMovies, loading, setLoading }) {
 		</div>
 	)
 }
+
 export default Home

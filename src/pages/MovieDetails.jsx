@@ -4,19 +4,13 @@ import PropagateLoader from "react-spinners/PropagateLoader"
 import "./movie_details.css"
 import Cards from "../components/Cards"
 
-// import jsonData from "../testModal.json"
-// import trailerJsonData from "../testTrailer.json"
-// const loadData = async () => await JSON.parse(JSON.stringify(jsonData))
-// const loadTrailer = async () => await JSON.parse(JSON.stringify(trailerJsonData))
-
-import detailData from "../data/detailData"
-const loadDetailData = async () => await JSON.parse(JSON.stringify(detailData))
+// import detailData from "../data/detailData"
+// const loadDetailData = async () => await JSON.parse(JSON.stringify(detailData))
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
 function MovieDetails() {
 	const [movieData, setMovieData] = useState(null)
-	// const [trailerData, setTrailerData] = useState(null)
 	const [loading, setLoading] = useState(null)
 
 	const params = useParams()
@@ -34,12 +28,12 @@ function MovieDetails() {
 	}
 
 	// TEST
-	const getDetailData = async () => {
-		setLoading(true)
-		const data = await loadDetailData()
-		setMovieData(data.items)
-		setLoading(false)
-	}
+	// const getDetailData = async () => {
+	// 	setLoading(true)
+	// 	const data = await loadDetailData()
+	// 	setMovieData(data.items)
+	// 	setLoading(false)
+	// }
 
 	const getMovieData = async () => {
 		setLoading(true)
@@ -62,7 +56,7 @@ function MovieDetails() {
 
 	let navigate = useNavigate()
 	const handleClose = () => {
-		navigate(-1)
+		navigate("/", { replace: true })
 	}
 
 	const handleClick = () => {
@@ -115,17 +109,24 @@ function MovieDetails() {
 										{movieData.fullTitle}
 									</h1>
 									<div className='md:text-xl text-lg'>
+										{movieData.imDbRating && (
+											<p className='mb-2'>
+												Rating: {movieData.imDbRating}
+												/10
+											</p>
+										)}
 										<p className='mb-2'>
-											Rating: {movieData.imDbRating}/10
+											{movieData.releaseDate &&
+												getDate(movieData.releaseDate)}
+											{movieData.runtimeMins && " | "}
+											{movieData.runtimeMins}{" "}
+											{movieData.runtimeMins && "mins"}
 										</p>
-										<p className='mb-2'>
-											{getDate(movieData.releaseDate)}
-											{" | "}
-											{movieData.runtimeMins} mins
-										</p>
-										<p className='mb-6'>
-											{movieData.genres}
-										</p>
+										{movieData.genres && (
+											<p className='mb-6'>
+												{movieData.genres}
+											</p>
+										)}
 									</div>
 								</div>
 								{movieData.plot && (
@@ -177,7 +178,7 @@ function MovieDetails() {
 							</h3>
 						</div>
 						<Cards
-							movies={movieData.similars}
+							data={movieData.similars}
 							setUpdatedId={setUpdatedId}
 						/>
 					</div>

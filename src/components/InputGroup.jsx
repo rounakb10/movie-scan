@@ -1,28 +1,14 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
+import DataContext from "../context/DataContext"
 import "./input_group.css"
-const API_KEY = process.env.REACT_APP_API_KEY
-const API_URL = `https://imdb-api.com/en/API`
 
-function InputGroup({ setMovies, setLoading, errorMessage, setErrorMessage }) {
+function InputGroup() {
 	const [searchTerm, setSearchTerm] = useState("")
-	const [searchType, setSearchType] = useState("")
-
-	const search = async (title, type) => {
-		setLoading(true)
-		if (title !== "") {
-			const response = await fetch(
-				`${API_URL}/Search${type}/${API_KEY}/${title}`
-			)
-			const data = await response.json()
-			if (data.results) setMovies(data.results)
-			setErrorMessage(data.errorMessage)
-		}
-		setLoading(false)
-	}
+	const { search } = useContext(DataContext)
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		search(searchTerm, searchType)
+		search(searchTerm)
 	}
 
 	const handleChange = (e) => setSearchTerm(e.target.value)
@@ -38,13 +24,7 @@ function InputGroup({ setMovies, setLoading, errorMessage, setErrorMessage }) {
 				value={searchTerm}
 				onChange={handleChange}
 			/>
-			<button
-				className='search-btn px-2 rounded-r-xl'
-				type='submit'
-				onClick={() => {
-					setSearchType("")
-				}}
-			>
+			<button className='search-btn px-2 rounded-r-xl' type='submit'>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
 					fill='none'
