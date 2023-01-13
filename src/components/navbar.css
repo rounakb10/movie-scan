@@ -4,7 +4,7 @@ nav {
 	/* background-color: rgba(0, 0, 0, 0.4); */
 }
 
-.nav-item:link,
+.nav-item:enabled,
 .nav-item:visited {
 	color: var(--text);
 	text-decoration: none;
@@ -16,6 +16,6 @@ nav {
 	color: var(--grey);
 }
 
-.nav-brand:link {
+.nav-brand:enabled {
 	font-size: 24px;
 }
