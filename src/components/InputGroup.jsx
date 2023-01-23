@@ -1,10 +1,9 @@
 import { useState, useContext } from "react"
-import DataContext from "../context/DataContext"
-import "./input_group.css"
+import appContext from "../context/appContext"
 
 function InputGroup() {
 	const [searchTerm, setSearchTerm] = useState("")
-	const { search } = useContext(DataContext)
+	const { search } = useContext(appContext)
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -19,19 +18,21 @@ function InputGroup() {
 		>
 			<input
 				type='text'
-				className='search-box px-4 py-3 text-lg rounded-l-xl'
+				className='w-full px-4 py-3 text-lg rounded-l-xl COLORS: bg-surface text-text selection:bg-grey placeholder:text-grey outline-none'
 				placeholder='Search'
 				value={searchTerm}
 				onChange={handleChange}
 			/>
-			<button className='search-btn px-2 rounded-r-xl' type='submit'>
+			<button
+				className='px-2 rounded-r-xl bg-surface w-10 hover:bg-lightgrey active:bg-grey'
+				type='submit'
+			>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
 					fill='none'
 					viewBox='0 0 24 24'
 					strokeWidth='1.5'
-					stroke='currentColor'
-					className='search-icon'
+					className='stroke-text w-6'
 				>
 					<path
 						strokeLinecap='round'

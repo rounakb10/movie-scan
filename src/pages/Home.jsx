@@ -1,18 +1,17 @@
-import "./home.css"
 import InputGroup from "../components/InputGroup"
 import Cards from "../components/Cards"
 import PropagateLoader from "react-spinners/PropagateLoader"
 import Navbar from "../components/Navbar"
 import { useContext } from "react"
-import DataContext from "../context/DataContext"
+import appContext from "../context/appContext"
 
 function Home() {
-	const { data, loading, errorMessage } = useContext(DataContext)
+	const { data, loading, errorMessage } = useContext(appContext)
 
 	const setUpdatedId = () => {}
 
 	return (
-		<div className='flex flex-col h-screen items-center justify-between'>
+		<div className='flex flex-col h-screen items-center justify-between '>
 			<Navbar />
 
 			<main className='self-stretch'>
@@ -26,25 +25,32 @@ function Home() {
 						/>
 					</div>
 				)}
-				<div className='overflow-hidden p-2'>
-					{data ? (
-						data.errorMessage === "" || errorMessage === "" ? (
+
+				{data ? (
+					data.errorMessage === "" || errorMessage === "" ? (
+						<div className='overflow-hidden p-2'>
 							<Cards data={data} setUpdatedId={setUpdatedId} />
-						) : (
-							<div className='flex flex-col h-[85vh] items-center justify-center'>
-								<p className='md:text-2xl sm:text-xl'>
-									API limit exceeded, try again later
-								</p>
-							</div>
-						)
+						</div>
 					) : (
-						<></>
-					)}
-				</div>
+						<div className='flex flex-col h-[85vh] items-center justify-center'>
+							<p className='md:text-2xl sm:text-xl'>
+								API limit exceeded, try again later
+							</p>
+						</div>
+					)
+				) : (
+					<></>
+				)}
 			</main>
-			<footer className='flex self-stretch justify-center py-1'>
-				<p className='footer-text'>
-					Data provided by <a href='https://imdb-api.com'>IMDB-API</a>
+			<footer className='flex self-stretch justify-center py-1 bg-surface text-text text-sm'>
+				<p>
+					Data provided by{" "}
+					<a
+						href='https://imdb-api.com'
+						className='default-transition hover:text-grey'
+					>
+						IMDB-API
+					</a>
 				</p>
 			</footer>
 		</div>
