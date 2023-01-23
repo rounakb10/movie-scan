@@ -1,17 +1,9 @@
 import { createContext, useState } from "react"
 
-import movieJsonData from "../data/movieJsonData"
-import seriesJsonData from "../data/seriesJsonData"
-
-const loadMovieData = async () =>
-	await JSON.parse(JSON.stringify(movieJsonData))
-const loadSeriesData = async () =>
-	await JSON.parse(JSON.stringify(seriesJsonData))
-
 const API_KEY = process.env.REACT_APP_API_KEY
 const API_URL = `https://imdb-api.com/en/API`
 
-const DataContext = createContext()
+const appContext = createContext()
 
 export const DataProvider = ({ children }) => {
 	const [data, setData] = useState(null)
@@ -20,7 +12,8 @@ export const DataProvider = ({ children }) => {
 
 	const getTopMovies = async () => {
 		setLoading(true)
-		const data = await loadMovieData()
+		const response = await fetch("/data/moviesData.json")
+		const data = await response.json()
 		setErrorMessage(data.errorMessage)
 		setData(data.items)
 		setLoading(false)
@@ -28,7 +21,9 @@ export const DataProvider = ({ children }) => {
 
 	const getTopSeries = async () => {
 		setLoading(true)
-		const data = await loadSeriesData()
+		const response = await fetch("/data/seriesData.json")
+		const data = await response.json()
+		setErrorMessage(data.errorMessage)
 		setErrorMessage(data.errorMessage)
 		setData(data.items)
 		setLoading(false)
@@ -53,8 +48,10 @@ export const DataProvider = ({ children }) => {
 		setLoading(false)
 	}
 
+	const switchTheme = () => {}
+
 	return (
-		<DataContext.Provider
+		<appContext.Provider
 			value={{
 				data,
 				loading,
@@ -63,11 +60,12 @@ export const DataProvider = ({ children }) => {
 				getTopSeries,
 				getNothing,
 				search,
+				switchTheme,
 			}}
 		>
 			{children}
-		</DataContext.Provider>
+		</appContext.Provider>
 	)
 }
 
-export default DataContext
+export default appContext

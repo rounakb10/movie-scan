@@ -1,11 +1,7 @@
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams, useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
 import PropagateLoader from "react-spinners/PropagateLoader"
-import "./movie_details.css"
 import Cards from "../components/Cards"
-
-// import detailData from "../data/detailData"
-// const loadDetailData = async () => await JSON.parse(JSON.stringify(detailData))
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
@@ -14,7 +10,7 @@ function MovieDetails() {
 	const [loading, setLoading] = useState(null)
 
 	const params = useParams()
-	const [updatedId, setUpdatedId] = useState(params.id)
+	const location = useLocation()
 
 	const getDate = (val) => {
 		var date = new Date(val)
@@ -27,32 +23,21 @@ function MovieDetails() {
 		return formattedDate
 	}
 
-	// TEST
-	// const getDetailData = async () => {
-	// 	setLoading(true)
-	// 	const data = await loadDetailData()
-	// 	setMovieData(data.items)
-	// 	setLoading(false)
-	// }
-
 	const getMovieData = async () => {
 		setLoading(true)
-		const response = await fetch(
-			`https://imdb-api.com/en/API/Title/${API_KEY}/${params.id}/Trailer,Ratings,`
-		)
+		const url = `https://imdb-api.com/en/API/Title/${API_KEY}/${params.id}/Trailer,Ratings,`
+		// const url = "/data/detailData.json"
+		const response = await fetch(url)
 		const data = await response.json()
 		setMovieData(data)
-		// const data = await loadData()
-
 		setLoading(false)
 	}
 
 	useEffect(() => {
 		getMovieData()
-		// getDetailData() //TEST
 		window.scrollTo(0, 0)
 		// eslint-disable-next-line
-	}, [updatedId])
+	}, [location])
 
 	let navigate = useNavigate()
 	const handleClose = () => {
@@ -73,7 +58,7 @@ function MovieDetails() {
 					viewBox='0 0 24 24'
 					strokeWidth='1.5'
 					stroke='currentColor'
-					className='cross-btn'
+					className='w-8 stroke-text hover:stroke-grey'
 				>
 					<path
 						strokeLinecap='round'
@@ -163,7 +148,9 @@ function MovieDetails() {
 									<div className='text-center md:text-left'>
 										<button
 											type='button'
-											className='trailer-btn mt-8 rounded-xl px-6 py-3 text-xl'
+											className='trailer-btn mt-8 rounded-xl px-6 py-3 text-xl default-transition 
+											border border-text 
+											bg-transparent hover:bg-text text-text hover:text-bg'
 											onClick={handleClick}
 										>
 											Watch Trailer
@@ -177,10 +164,7 @@ function MovieDetails() {
 								You might also like
 							</h3>
 						</div>
-						<Cards
-							data={movieData.similars}
-							setUpdatedId={setUpdatedId}
-						/>
+						<Cards data={movieData.similars} />
 					</div>
 				) : (
 					<div className='flex flex-col h-[90vh] items-center justify-center'>
