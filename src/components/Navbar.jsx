@@ -5,7 +5,7 @@ function Navbar() {
 	const { getTopSeries, getTopMovies, getNothing } = useContext(appContext)
 	// eslint-disable-next-line
 	const [theme, toggleTheme] = useContext(Theme)
-
+  
 	return (
 		<nav className='flex self-stretch gap-6 justify-between items-center mb-4 px-6 bg-surface'>
 			<button
@@ -29,6 +29,7 @@ function Navbar() {
 					Top 60 TV
 				</button>
 				<button className='default-transition' onClick={toggleTheme}>
+
 					{theme === "light" ? (
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
