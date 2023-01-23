@@ -13,6 +13,14 @@ function App() {
 				</Routes>
 			</BrowserRouter>
 		</DataProvider>
+		<DataProvider>
+			<BrowserRouter>
+				<Routes>
+					<Route path='/:id' element={<MovieDetails />} />
+					<Route path='/' element={<Home />} />
+				</Routes>
+			</BrowserRouter>
+		</DataProvider>
 	)
 }
 

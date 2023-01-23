@@ -1,3 +1,4 @@
+import "./home.css"
 import InputGroup from "../components/InputGroup"
 import Cards from "../components/Cards"
 import PropagateLoader from "react-spinners/PropagateLoader"
@@ -15,6 +16,7 @@ function Home() {
 			<Navbar />
 
 			<main className='self-stretch'>
+				<InputGroup />
 				<InputGroup />
 				{loading && (
 					<div className='text-center mt-4'>

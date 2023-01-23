@@ -13,12 +13,14 @@ function Navbar() {
 			>
 				MovieDB
 			</button>
+			</button>
 			<div className='flex md:gap-6 gap-3'>
 				<button
 					className='default-transition hover:text-grey'
 					onClick={getTopMovies}
 				>
 					Top 60 Movies
+				</button>
 				</button>
 
 				<button

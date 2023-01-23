@@ -42,6 +42,7 @@ function MovieDetails() {
 	let navigate = useNavigate()
 	const handleClose = () => {
 		navigate("/", { replace: true })
+		navigate("/", { replace: true })
 	}
 
 	const handleClick = () => {
@@ -100,13 +101,29 @@ function MovieDetails() {
 												/10
 											</p>
 										)}
+										{movieData.imDbRating && (
+											<p className='mb-2'>
+												Rating: {movieData.imDbRating}
+												/10
+											</p>
+										)}
 										<p className='mb-2'>
 											{movieData.releaseDate &&
 												getDate(movieData.releaseDate)}
 											{movieData.runtimeMins && " | "}
 											{movieData.runtimeMins}{" "}
 											{movieData.runtimeMins && "mins"}
+											{movieData.releaseDate &&
+												getDate(movieData.releaseDate)}
+											{movieData.runtimeMins && " | "}
+											{movieData.runtimeMins}{" "}
+											{movieData.runtimeMins && "mins"}
 										</p>
+										{movieData.genres && (
+											<p className='mb-6'>
+												{movieData.genres}
+											</p>
+										)}
 										{movieData.genres && (
 											<p className='mb-6'>
 												{movieData.genres}

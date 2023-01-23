@@ -2,11 +2,13 @@ import { useState, useContext } from "react"
 import appContext from "../context/appContext"
 
 function InputGroup() {
+function InputGroup() {
 	const [searchTerm, setSearchTerm] = useState("")
 	const { search } = useContext(appContext)
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
+		search(searchTerm)
 		search(searchTerm)
 	}
 
