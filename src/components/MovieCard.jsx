@@ -29,7 +29,6 @@ const MovieCard = ({ dataItem }) => {
 						</div>
 					</div>
 				</Link>
-				</Link>
 			</div>
 		</>
 	)
